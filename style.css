@@ -1,0 +1,241 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: white;
+  background: linear-gradient(
+    rgba(51, 51, 97, 0.473) 0%,
+    rgba(54, 54, 109, 0.253) 3%,
+    rgb(245, 245, 245) 11%
+  );
+  max-width: 600px;
+  margin: 30px auto;
+}
+h2 {
+  font-weight: lighter;
+  font-size: 30px;
+  padding: 40px 20px 0px 20px;
+  color: black;
+}
+.hidden {
+  display: none;
+}
+/* FORM */
+
+form {
+  padding: 0 30px 30px 30px;
+  font-family: Arial, sans-serif;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: rgba(0, 0, 0, 0.308) 2px 2px 15px;
+  display: grid;
+  gap: 1rem;
+}
+fieldset {
+  border: #e0e0e0 10px solid;
+  border-radius: 20px;
+  font-weight: bold;
+  color: #555555;
+  padding: 0 20px 20px 20px;
+  margin: 10px;
+}
+fieldset legend {
+  padding: 0 10px;
+}
+form label {
+  margin-top: 1rem;
+  cursor: pointer;
+  font-weight: lighter;
+  color: rgb(43, 43, 43);
+}
+.formcontrol:hover input,
+input:hover {
+  background-color: rgb(225, 225, 238);
+}
+form input,
+textarea {
+  font-family: inherit;
+  padding: 5px;
+  font-size: 16px;
+  font-size: max(16px, 1rem);
+  padding: 0.5rem;
+  background-color: rgb(245, 245, 245);
+  border: none;
+  border-radius: 5px;
+}
+.formcontrol {
+  display: grid;
+  gap: 0.3rem;
+  cursor: pointer;
+}
+form ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+input:focus {
+  outline: rgb(0, 120, 218) solid 1.5px;
+  outline-offset: 2px;
+}
+input[name="title"]:valid,
+input[name="title"]:is(:valid):focus {
+  outline: rgb(83, 172, 0) solid 1.5px;
+  outline-offset: 2px;
+}
+input:invalid {
+  outline: rgb(214, 14, 14) solid 1px;
+  outline-offset: 2px;
+}
+
+input[type="radio"] {
+  /* -webkit-appearance: none;
+        appearance: none; */
+  border: 1px black solid;
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+}
+
+/* CHECKMARKS */
+.checkmark {
+  --size: 20px;
+  inline-size: var(--size);
+  block-size: var(--size);
+  cursor: pointer;
+  position: relative;
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px rgb(128, 128, 128) solid;
+  width: var(--size);
+  height: var(--size);
+  margin-right: 10px;
+}
+.checkmark svg {
+  display: block;
+  position: absolute;
+  top: 2%;
+  left: 0px;
+  width: var(--size);
+  height: var(--size);
+  padding: 4px;
+}
+.checkmark svg path {
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 1;
+  fill: none;
+  stroke-width: 15;
+  stroke-linecap: round;
+  stroke: white;
+  background-color: white;
+  transition: stroke-dashoffset 1s ease-out;
+}
+input[type="checkbox"]:checked {
+  border: 1px rgb(9, 114, 0) solid;
+  background-color: rgb(56, 56, 56);
+}
+input[type="checkbox"]:checked + svg path {
+  stroke-dashoffset: 0;
+}
+/* ERRORS */
+.error {
+  display: none;
+  visibility: hidden;
+  transition: ease-in-out all 2s;
+  color: rgb(214, 14, 14);
+  padding: 5px 0;
+  font-size: 15px;
+  font-style: italic;
+}
+input:not(:focus):invalid ~ .error {
+  display: block;
+  visibility: visible;
+  position: relative;
+}
+/* BUTTON */
+button {
+  font-size: 16px;
+  padding: 20px 40px;
+  width: fit-content;
+  margin: 0 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(71, 71, 105);
+  box-shadow: rgba(0, 0, 0, 0.281) 1px 2px 5px;
+  transition: all 1s;
+}
+button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+/* GAME LIST */
+
+.videogame {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.281) 1px 2px 5px;
+  margin: 20px 0;
+  padding: 20px;
+  font-family: sans-serif;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.videogame button {
+  align-self: flex-end;
+  padding: 10px;
+  margin: 0;
+  transition: background-color 1s, width 2s;
+  height: 40px;
+  width: 40px;
+}
+.videogame button:hover {
+  background-color: rgb(150, 65, 65);
+  cursor: pointer;
+  width: max-content;
+}
+.videogame button:hover::before {
+  content: "Delete Game? ";
+}
+.videogame h2 {
+  padding: 0;
+  margin-top: -40px;
+  width: max-content;
+}
+.videogame p {
+  font-size: 1.2rem;
+  padding: 8px;
+  background-color: rgba(241, 241, 241, 0.5);
+  border-radius: 10px 10px 0 0;
+  margin-top: 10px;
+}
+.videogame p + p {
+  border-radius: 0;
+  margin-top: 0;
+}
+.videogame p + p + p {
+  border-radius: 0 0 10px 10px;
+  margin-top: 0;
+}
+.developer::before {
+  content: "Developed by: ";
+  font-size: 70%;
+  color: rgb(66, 66, 66);
+}
+.age_limit::before {
+  content: "Recommended for age: ";
+  font-size: 70%;
+  color: rgb(66, 66, 66);
+}
+.age_limit::after {
+  content: "+";
+}

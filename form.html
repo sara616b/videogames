@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add a New Videogames</title>
+    <style>
+      :root {
+        --theme-color: hsl(258 29% 43%);
+        --accent-color: hsl(180 50% 43%);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        background: white;
+        background: linear-gradient(
+          rgba(71, 71, 105, 0.473) 0%,
+          rgba(71, 71, 105, 0.253) 3%,
+          rgb(245, 245, 245) 11%
+        );
+      }
+      main {
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 0 30px 30px 30px;
+        font-family: Arial, sans-serif;
+        background-color: white;
+        border-radius: 20px;
+        box-shadow: rgba(0, 0, 0, 0.308) 2px 2px 15px;
+      }
+      h2 {
+        font-weight: lighter;
+        font-size: 30px;
+        padding: 30px 20px 10px 20px;
+        color: black;
+      }
+      /* FORM */
+
+      form {
+        display: grid;
+        gap: 1rem;
+      }
+      fieldset {
+        border: #e0e0e0 10px solid;
+        border-radius: 20px;
+        font-weight: bold;
+        color: #555555;
+        padding: 0 20px 20px 20px;
+        margin: 10px;
+      }
+      fieldset legend {
+        padding: 0 10px;
+      }
+      form label {
+        margin-top: 1rem;
+        cursor: pointer;
+        font-weight: lighter;
+        color: rgb(43, 43, 43);
+      }
+      .formcontrol:hover input,
+      input:hover {
+        background-color: rgb(225, 225, 238);
+      }
+      form input,
+      textarea {
+        font-family: inherit;
+        padding: 5px;
+        font-size: 16px;
+        font-size: max(16px, 1rem);
+        padding: 0.5rem;
+        background-color: rgb(245, 245, 245);
+        border: none;
+        border-radius: 5px;
+      }
+      .formcontrol {
+        display: grid;
+        gap: 0.3rem;
+        cursor: pointer;
+      }
+      form ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+      input:focus {
+        outline: rgb(255, 196, 0) solid 1.5px;
+        outline-offset: 2px;
+      }
+      input[name="title"]:valid,
+      input[name="title"]:is(:valid):focus {
+        outline: rgb(83, 172, 0) solid 1.5px;
+        outline-offset: 2px;
+      }
+      input:invalid {
+        outline: rgb(214, 14, 14) dashed 1.5px;
+        outline-offset: 2px;
+      }
+
+      input[type="radio"] {
+        /* -webkit-appearance: none;
+        appearance: none; */
+        border: 1px black solid;
+        border-radius: 50%;
+        height: 20px;
+        width: 20px;
+      }
+
+      /* CHECKMARKS */
+      .checkmark {
+        --size: 20px;
+        inline-size: var(--size);
+        block-size: var(--size);
+        cursor: pointer;
+        position: relative;
+        align-items: center;
+        display: flex;
+        width: 100%;
+      }
+
+      input[type="checkbox"] {
+        -webkit-appearance: none;
+        appearance: none;
+        border: 1px rgb(128, 128, 128) solid;
+        width: var(--size);
+        height: var(--size);
+        margin-right: 10px;
+      }
+      .checkmark svg {
+        display: block;
+        position: absolute;
+        top: 2%;
+        left: 0px;
+        width: var(--size);
+        height: var(--size);
+        padding: 4px;
+      }
+      .checkmark svg path {
+        stroke-dasharray: 1 1;
+        stroke-dashoffset: 1;
+        fill: none;
+        stroke-width: 15;
+        stroke-linecap: round;
+        stroke: white;
+        background-color: white;
+        transition: stroke-dashoffset 1s ease-out;
+      }
+      input[type="checkbox"]:checked {
+        border: 1px rgb(9, 114, 0) solid;
+        background-color: rgb(56, 56, 56);
+      }
+      input[type="checkbox"]:checked + svg path {
+        stroke-dashoffset: 0;
+      }
+      /* ERRORS */
+      .error {
+        display: none;
+        visibility: hidden;
+        transition: ease-in-out all 2s;
+        color: rgb(214, 14, 14);
+        padding: 5px 0;
+        font-size: 15px;
+        font-style: italic;
+      }
+      input:not(:focus):invalid ~ .error {
+        display: block;
+        visibility: visible;
+        position: relative;
+      }
+      /* BUTTON */
+      button {
+        font-size: 16px;
+        padding: 20px 40px;
+        width: fit-content;
+        margin: 0 10px;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        background-color: rgb(71, 71, 105);
+        box-shadow: rgba(0, 0, 0, 0.281) 1px 2px 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <form>
+        <h2>Add a new game!</h2>
+        <fieldset>
+          <legend>Information</legend>
+          <div class="formcontrol">
+            <label for="title"> Title </label>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              required
+              minlength="2"
+              placeholder="e.g. Super Mario Bros"
+            />
+          </div>
+
+          <div class="formcontrol">
+            <label for="description"> Description </label>
+            <textarea
+              name="description"
+              id="description"
+              cols="30"
+              rows="5"
+              minlength="1"
+              placeholder="What is the game about..."
+            ></textarea>
+          </div>
+
+          <div class="formcontrol">
+            <label for="age-limit"> Age Limit </label>
+            <input
+              type="text"
+              name="age-limit"
+              id="age-limit"
+              inputmode="numeric"
+              placeholder="e.g. 12, 21"
+              minlength="1"
+              min="0"
+              pattern="[0-9]+"
+            />
+            <p class="error">Please write a <strong>number</strong> above 0</p>
+          </div>
+
+          <div class="formcontrol">
+            <label for="relase-date"> Release Date </label>
+            <input
+              max="2021-12-30"
+              type="date"
+              name="release-date"
+              id="release-date"
+            />
+          </div>
+
+          <div class="formcontrol">
+            <label for="developer"> Developer </label>
+            <input
+              type="text"
+              name="developer"
+              id="developer"
+              placeholder="e.g. Nintendo, Epic Games"
+              minlength="1"
+            />
+          </div>
+
+          <div class="formcontrol">
+            <label for="genre"> Genre </label>
+            <input
+              type="text"
+              name="genre"
+              id="genre"
+              placeholder="e.g. adventure, puzzle"
+              minlength="1"
+            />
+          </div>
+
+          <div class="formcontrol">
+            <label for="price"> Price </label>
+            <input
+              type="number"
+              name="price"
+              id="price"
+              minlength="1"
+              placeholder="e.g. 10, 5"
+              pattern="[0-9]+"
+            />
+          </div>
+
+          <div class="formcontrol">
+            <label for="metascore"> Metascore </label>
+            <input
+              type="number"
+              name="metascore"
+              id="metascore"
+              inputmode="numeric"
+              minlength="1"
+              min="0"
+              max="100"
+              pattern="[0-9]+"
+            />
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Platforms</legend>
+          <ul role="list" class="controls">
+            <li>
+              <label class="checkmark" for="pc">
+                <input type="checkbox" name="pc" id="pc" />
+                PC
+                <svg
+                  aria-hidden="true"
+                  width="88"
+                  height="77"
+                  viewBox="0 0 100 100"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path pathlength="1" d="M1 51L32 76L87 1" stroke="black" />
+                </svg>
+              </label>
+            </li>
+
+            <li>
+              <label class="checkmark" for="mac">
+                <input type="checkbox" name="mac" id="mac" />
+                Mac
+                <svg
+                  aria-hidden="true"
+                  width="88"
+                  height="77"
+                  viewBox="0 0 100 100"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path pathlength="1" d="M1 51L32 76L87 1" stroke="black" />
+                </svg>
+              </label>
+            </li>
+
+            <li>
+              <label class="checkmark" for="x-box">
+                <input type="checkbox" name="x-box" id="x-box" />
+                X-Box
+                <svg
+                  aria-hidden="true"
+                  width="88"
+                  height="77"
+                  viewBox="0 0 100 100"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path pathlength="1" d="M1 51L32 76L87 1" stroke="black" />
+                </svg>
+              </label>
+            </li>
+
+            <li>
+              <label class="checkmark" for="playstation">
+                <input type="checkbox" name="playstation" id="playstation" />
+                Playstation
+                <svg
+                  aria-hidden="true"
+                  width="88"
+                  height="77"
+                  viewBox="0 0 100 100"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path pathlength="1" d="M1 51L32 76L87 1" stroke="black" />
+                </svg>
+              </label>
+            </li>
+          </ul>
+        </fieldset>
+        <fieldset>
+          <legend>Multiplayer?</legend>
+
+          <div class="formcontrol">
+            <label for="multiplayer">
+              <input type="radio" name="multiplayer" id="multiplayer" />
+              Multiplayer
+            </label>
+          </div>
+
+          <div class="formcontrol">
+            <label for="singleplayer">
+              <input type="radio" name="multiplayer" id="singleplayer" />
+              Singleplayer
+            </label>
+          </div>
+        </fieldset>
+
+        <button type="submit">Submit game!</button>
+      </form>
+    </main>
+  </body>
+</html>

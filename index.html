@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Videogames</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <form>
+      <h2>Add a New Game</h2>
+      <fieldset>
+        <legend>Information</legend>
+        <div class="formcontrol">
+          <label for="title"> Title </label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            required
+            minlength="2"
+            placeholder="e.g. Super Mario Bros"
+          />
+        </div>
+
+        <div class="formcontrol">
+          <label for="description"> Description </label>
+          <textarea
+            name="description"
+            id="description"
+            cols="30"
+            rows="5"
+            minlength="1"
+            placeholder="What is the game about..."
+          ></textarea>
+        </div>
+
+        <div class="formcontrol">
+          <label for="age_limit"> Age Limit </label>
+          <input
+            type="text"
+            name="age_limit"
+            id="age_limit"
+            inputmode="numeric"
+            placeholder="e.g. 12, 21"
+            minlength="1"
+            min="0"
+            pattern="[0-9]+"
+          />
+          <p class="error">Please write a <strong>number</strong> above 0</p>
+        </div>
+
+        <div class="formcontrol">
+          <label for="relase_date"> Release Date </label>
+          <input
+            max="2021-12-30"
+            type="date"
+            name="release_date"
+            id="release_date"
+          />
+        </div>
+
+        <div class="formcontrol">
+          <label for="developer"> Developer </label>
+          <input
+            type="text"
+            name="developer"
+            id="developer"
+            placeholder="e.g. Nintendo, Epic Games"
+            minlength="1"
+          />
+        </div>
+
+        <div class="formcontrol">
+          <label for="genre"> Genre </label>
+          <input
+            type="text"
+            name="genre"
+            id="genre"
+            placeholder="e.g. adventure, puzzle"
+            minlength="1"
+          />
+        </div>
+
+        <div class="formcontrol">
+          <label for="price"> Price </label>
+          <input
+            type="number"
+            name="price"
+            id="price"
+            minlength="1"
+            placeholder="e.g. 10, 5"
+            pattern="[0-9]+"
+          />
+        </div>
+
+        <div class="formcontrol">
+          <label for="metascore"> Metascore </label>
+          <input
+            type="number"
+            name="metascore"
+            id="metascore"
+            inputmode="numeric"
+            minlength="1"
+            min="0"
+            max="100"
+            pattern="[0-9]+"
+          />
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Platforms</legend>
+        <ul role="list" class="controls">
+          <li>
+            <label class="checkmark" for="pc">
+              <input type="checkbox" name="pc" id="pc" />
+              PC
+              <svg
+                aria-hidden="true"
+                width="88"
+                height="77"
+                viewBox="0 0 100 100"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path pathlength="1" d="M1 51L32 76L87 1" stroke="black" />
+              </svg>
+            </label>
+          </li>
+
+          <li>
+            <label class="checkmark" for="mac">
+              <input type="checkbox" name="mac" id="mac" />
+              Mac
+              <svg
+                aria-hidden="true"
+                width="88"
+                height="77"
+                viewBox="0 0 100 100"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path pathlength="1" d="M1 51L32 76L87 1" stroke="black" />
+              </svg>
+            </label>
+          </li>
+
+          <li>
+            <label class="checkmark" for="x-box">
+              <input type="checkbox" name="x-box" id="x-box" />
+              X-Box
+              <svg
+                aria-hidden="true"
+                width="88"
+                height="77"
+                viewBox="0 0 100 100"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path pathlength="1" d="M1 51L32 76L87 1" stroke="black" />
+              </svg>
+            </label>
+          </li>
+
+          <li>
+            <label class="checkmark" for="playstation">
+              <input type="checkbox" name="playstation" id="playstation" />
+              Playstation
+              <svg
+                aria-hidden="true"
+                width="88"
+                height="77"
+                viewBox="0 0 100 100"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path pathlength="1" d="M1 51L32 76L87 1" stroke="black" />
+              </svg>
+            </label>
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset>
+        <legend>Multiplayer?</legend>
+
+        <div class="formcontrol">
+          <label for="multiplayer">
+            <input type="radio" name="multiplayer" id="multiplayer" />
+            Multiplayer
+          </label>
+        </div>
+
+        <div class="formcontrol">
+          <label for="singleplayer">
+            <input type="radio" name="multiplayer" id="singleplayer" />
+            Singleplayer
+          </label>
+        </div>
+      </fieldset>
+
+      <button type="submit">Submit game!</button>
+    </form>
+    <main id="game_list"></main>
+    <template>
+      <div class="videogame">
+        <button class="delete">X</button>
+        <h2></h2>
+        <p class="developer"></p>
+        <p class="description"></p>
+        <p class="age_limit"></p>
+      </div>
+    </template>
+  </body>
+  <script type="module" src="index.js"></script>
+</html>
